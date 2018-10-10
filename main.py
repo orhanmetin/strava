@@ -81,13 +81,13 @@ def get_race_results(opener):
 	
 	page = 1
 	while page <= 351:
-		print str(page) + "/351\n"
+		prin(str(page) + "/351\n")
 		url = 'https://www.strava.com/running_races/2017-paris-marathon/results?page=' + str(page)
 
 		try:
 			response = opener.open(url)
 		except Exception, e:
-			print e
+			print(e)
 			return
 		
 		#with open("E:\\Python\\Project\\Strava\\2017-paris.txt", "a") as myfile:
@@ -145,7 +145,7 @@ def get_lap_efforts(activityId):
 	#print data[0]["abbr"]["distance"]["short"] + "\n" + data[0]["abbr"]["speed"]["short"]
 	
 	if laps[0]["abbr"]["distance"]["short"] != "km" or laps[0]["abbr"]["speed"]["short"] != "/km" or laps[0]["abbr"]["heartrate"]["short"] != "bpm":
-		print str(activityId) + " farkli birim\n"
+		print(str(activityId) + " farkli birim\n")
 	
 	for lap in laps:
 		sqlstatement = "INSERT INTO [dbo].[StravaActivityLapEffort]([ActivityId],[LapId],[LapIndex],[Distance],[StartIndex],[EndIndex],[ElevDifference],[AvgGrade],[AvgSpeed],[AvgMovingSpeed],[MaxSpeed],[AvgHr],[MaxHr],[AvgCadence],[MaxCadence],[ElapsedTime],[MovingTime]) "
@@ -180,7 +180,7 @@ def get_overview(opener, activityId):
 	try:
 		response = opener.open(url)
 	except Exception, e:
-		print e
+		print(e)
 		return
 	
 	# with open("E:\\Python\\Project\\Strava\\2017-paris-overview.txt", "a") as myfile:
@@ -192,7 +192,7 @@ def get_overview(opener, activityId):
 	soup = BeautifulSoup(response.read(), "html.parser")
 	
 	if (soup.find_all("ul", class_="inline-stats section")) is None or len(soup.find_all("ul", class_="inline-stats section")) == 0:
-		print str(activityId) + ' YOK'
+		print(str(activityId) + ' YOK')
 		return
 	
 	divWatch = soup.find("div", class_="device spans8")
@@ -221,7 +221,7 @@ def get_overview(opener, activityId):
 				elif label_name == 'Elapsed Time':
 					elapsed_time = value.encode('utf-8').strip()				
 				elif label_name <> 'Extreme Suffer Score' and label_name <> 'Epic Suffer Score' and label_name <> 'Epic Suffer Score Sufferfest':
-					print label_name
+					print(label_name)
 	
 	divMoreStats = soup.find("div", class_="section more-stats")
 	if divMoreStats is not None and len(divMoreStats) > 0:
