@@ -86,7 +86,7 @@ def get_race_results(opener):
 
 		try:
 			response = opener.open(url)
-		except Exception, e:
+		except(Exception, e:)
 			print(e)
 			return
 		
