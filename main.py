@@ -38,7 +38,7 @@ def logException(message):
 			myfile.write(message + "\n")
 			
 def log_in():
-	print "Logging in..."
+	print("Logging in...")
 	cj = cookielib.CookieJar()
 	opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
 
@@ -66,6 +66,7 @@ def log_in():
 		# myfile.write(response.read())	
 	
 	time.sleep(TIME_BT_REQUESTS)
+	print("Logging in OK")
 	return opener
 
 def get_race_results(opener):
