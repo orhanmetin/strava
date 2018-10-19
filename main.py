@@ -81,7 +81,8 @@ def get_race_results(opener):
 	
 	page = 1
 	while page <= 351:
-		prin(str(page) + "/351\n")
+		print(str(page) + "/351\n")
+		
 		url = 'https://www.strava.com/running_races/2017-paris-marathon/results?page=' + str(page)
 
 		try:
